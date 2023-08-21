@@ -11,7 +11,7 @@ class LinkedList(object): # CC* - Связный список
         if current_node == None: # проверка на пустую голову
             self.head = new_node
             return
-        while current_node.getNext() != None: # пока следущий элемент после текущего не равен None
+        while current_node.getNext() != None: # проходимся по всему списку и останавливаемся на предпоследнем
             current_node = current_node.getNext()
         current_node.setNext(new_node)
 
@@ -19,7 +19,7 @@ class LinkedList(object): # CC* - Связный список
     def showMeAll(self): # вывод элементов СС*
         current_node = self.head
         result = ''
-        while current_node != None: # пока текущий элемент не равен None
+        while current_node != None: # проходимся по всему списку
             result += str(current_node.getData())
             current_node = current_node.getNext()
         return " --> ".join(result)
