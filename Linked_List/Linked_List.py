@@ -49,5 +49,37 @@ class LinkedList(object): # CC* - Связный список
     
     
     def remove_first(self): # удаление первого элемента из СС*
+        if self.head == None:
+            return
+        else:
+            current_node = self.head
+            self.head = current_node.getNext()
+
+
+    def value(self, index): # возвращение элемента, через его индекс в СС*
         current_node = self.head
-        self.head = current_node.getNext()
+        count = 0
+        if index < 0:# что-бы не переберало весь список
+            return "Index out of range" 
+        while current_node != None: # перебор всего списка
+            if count == index: # если входной индекс равен count, вовзращаем искомое
+                return current_node.getData()
+            count += 1
+            current_node = current_node.getNext()
+        return "Index out of range" # если не нашло индекс
+    
+    def insert(self, index, data): # вставка в любое место СС*. index - на какое место, data - какой элемент
+        current_node = self.head
+        new_node = Node(data)
+        count = 0
+        while current_node != None:
+            if index == 0: # вставка в начало списка
+                self.addFirst(data)
+                return
+            if index == count + 1: # count + 1, потому что без этого плюса, он будет вставлять элемент после заданного индекса
+                new_node.setNext(current_node.getNext()) # вставляем ссылку
+                current_node.setNext(new_node)
+            count += 1
+            current_node = current_node.getNext()
+        return "Index out of range" # если не нашло индекс
+
